@@ -5,7 +5,7 @@ var events = require('events');
 
 // module exports needed to be executed everytime itis called
 // and therefore we pass functions as exports
-module.exports = function() {
+module.exports.getMoviePage = function(movie_genre) {
   // HTMLTitles object hold HTML of the movie page
   var HTMLTitles = "";
   // URL to mongodb database that hold movie information
@@ -52,18 +52,20 @@ module.exports = function() {
     });
   }
 
-  return {
-    getMoviePage : function(movie_genre, res) {
-      // Use connect method to connect to the mongodb server
-      MongoClient.connect(dburl, {native_parser:true}, function(err, db) {
-        assert.equal(null, err);
-        console.log("Connected successfully to database server");
-        // database is connected and now ready to construct HTML movie page
-        // once result is ready HTTP response is finalised and sent in callback
-        getTitles(db, movie_genre, function(result) {
-          res.end(result);
-        });
+  return new Promise((resolve,reject) => {
+    // Use connect method to connect to the mongodb server
+    MongoClient.connect(dburl, {native_parser:true}, function(err, db) {
+      // if database connection fails execute reject callback
+      if (err) {
+        reject(err);
+      };
+      console.log("Connected successfully to database server");
+      // database is connected and now ready to construct HTML movie page
+      // once result page is ready resolve caalback is called to finalise the
+      // http reqest
+      getTitles(db, movie_genre, function(result) {
+        resolve(result);
       });
-    }
-  }
+    });
+  });
 }
