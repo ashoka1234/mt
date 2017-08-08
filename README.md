@@ -6,7 +6,7 @@ Install
 -------
 The frontend functionality is coded in `frontend\main.html` using `HTML, javascript` and `AngularJS`.
 
-The backend functionality is coded in the server javascript file `movie_trailer_server.js` located in the project directory and a `NodeJS` module `backend\movie_titles.js`. The backend uses `NodeJS`.
+The backend functionality is coded in the server javascript file `movie_trailer_server.js` located in the project directory and a `NodeJS` module `backend\movie_titles.js`. The backend uses `NodeJS` and `MongoDB` for database storage.
 
 The image assets are located in `images` project directory.
 
@@ -16,3 +16,7 @@ Run
 On the project directory run
 
 `node movie_trailer_server.js`
+
+For basic insertions to database and cleanup, on project directory run
+
+`node movie_database.js`
