@@ -99,16 +99,17 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Movie Trailers</a>
-          <span><a class="navbar-brand" href="#/!">Random</a></span>
+          <a class="navbar-brand" href="#/!">Random</a>
           <span><a class="navbar-brand" href="#!animation">Animation</a></span>
           <span><a class="navbar-brand" href="#!scifi">Science Fiction</a></span>
         </div>
       </div>
     </div>
   </div>
+  <!-- Results of Angular router is directed here. Contains movie title page -->
   <div class="container" ng-view></div>
 
+  <!-- Anglar router: route to the correct movie title page based on navbar selections -->
   <script>
   var app = angular.module("myApp", ["ngRoute"]);
   app.config(function($routeProvider) {
